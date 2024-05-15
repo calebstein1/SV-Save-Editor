@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using ReactiveUI;
 using SVS_Season_Modifier.UI.Models;
 using SVS_Season_Modifier.UI.Services;
@@ -39,5 +40,27 @@ internal class MainWindowViewModel : ViewModelBase
     {
         get => _status;
         set => this.RaiseAndSetIfChanged(ref _status, value);
+    }
+
+    internal void ResetStatus()
+    {
+        Status = "SVS Season Modifier v0.1.0-beta";
+    }
+    
+    internal ReactiveCommand<MainWindowViewModel, Task> SaveCommand { get; } =
+        ReactiveCommand.Create<MainWindowViewModel, Task>(SaveNewData);
+
+    private static async Task SaveNewData(MainWindowViewModel vm)
+    {
+        if (vm.Selected.FilePath.Length.Equals(0))
+        {
+            vm.Status = "You must select a save file first";
+        }
+        else
+        {
+            // Modify file here
+        }
+        await Task.Delay(5000);
+        vm.ResetStatus();
     }
 }
