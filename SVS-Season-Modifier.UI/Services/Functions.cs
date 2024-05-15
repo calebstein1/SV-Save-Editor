@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Xml;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using SVS_Season_Modifier.UI.Models;
 
 namespace SVS_Season_Modifier.UI.Services;
@@ -26,6 +28,7 @@ internal static class Functions
     
     internal static void FindSaveFiles(ref ObservableCollection<SaveFile> saveFiles)
     {
+        XmlDocument reader = new();
         OperatingSystem os = 0;
         List<string> searchPaths = [];
         
@@ -46,6 +49,26 @@ internal static class Functions
                 searchPaths.Add(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "snap", "steam", "common", ".config", "StardewValley", "Saves"));
                 break;
         }
-        
+
+        // Rider suggested this monstrosity...
+        foreach (var newSave in from path in searchPaths from save in Directory.GetDirectories(path) select new SaveFile
+                 {
+                     FilePath = save,
+                     SaveId = Path.GetFileName(save)
+                 })
+        {
+            var savePath = newSave.FilePath ?? throw new InvalidOperationException();
+            var saveId = newSave.SaveId ?? throw new InvalidOperationException();
+            
+            reader.Load(Path.Combine(savePath, saveId));
+            newSave.CurSeason = reader.DocumentElement.SelectSingleNode("currentSeason").InnerText;
+            // Do CurSeasonByDay
+
+            reader.Load(Path.Combine(savePath, "SaveGameInfo"));
+            newSave.Name = reader.DocumentElement.SelectSingleNode("farmName").InnerText;
+            newSave.Farmer = reader.DocumentElement.SelectSingleNode("name").InnerText;
+
+            saveFiles.Add(newSave);
+        }
     }
 }
