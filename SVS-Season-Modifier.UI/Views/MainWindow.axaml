@@ -22,13 +22,15 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <DockPanel>
-                            <TextBlock DockPanel.Dock="Left" Text="{Binding Name}"/>
+                            <TextBlock Margin="0, 16" DockPanel.Dock="Left" Text="{Binding Name}"/>
                             <Button DockPanel.Dock="Right"
                                     HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
                                     Margin="32, 0, 0, 0"
-                                    Name="SelectButton"
                                     Command="{Binding SelectCommand}"
-                                    CommandParameter="{Binding}">Select</Button>
+                                    CommandParameter="{Binding}">
+                                Select
+                            </Button>
                         </DockPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -40,7 +42,13 @@
                 <TextBlock Margin="0, 8" Text="{Binding Selected.Name, StringFormat='Farm: {0}'}"/>
                 <TextBlock Margin="0, 8" Text="{Binding Selected.Farmer, StringFormat='Farmer: {0}'}"/>
                 <TextBlock Margin="0, 8" Text="{Binding Selected.CurSeason, StringFormat='Current In-Game Season: {0}'}"/>
-                <TextBlock Margin="0, 8" Text="{Binding Selected.CurSeasonByDay, StringFormat='Current Calendar Season: {0}'}"/>
+                <TextBlock Margin="0, 0, 0, 64" Text="{Binding Selected.CurSeasonByDay, StringFormat='Current Calendar Season: {0}'}"/>
+                <Button Margin="0, 8"
+                        HorizontalAlignment="Left"
+                        Command="{Binding SaveCommand}"
+                        CommandParameter="{Binding}">
+                    Save Changes
+                </Button>
             </StackPanel>
         </DockPanel>
     </StackPanel>
