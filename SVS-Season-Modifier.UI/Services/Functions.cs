@@ -51,8 +51,7 @@ internal static class Functions
                 break;
         }
 
-        // Rider suggested this monstrosity...
-        foreach (var newSave in from path in searchPaths from save in Directory.GetDirectories(path) select new SaveFile(vm)
+        foreach (var newSave in from path in searchPaths.Where(Directory.Exists) from save in Directory.GetDirectories(path) select new SaveFile(vm)
                  {
                      FilePath = save,
                      SaveId = Path.GetFileName(save)
