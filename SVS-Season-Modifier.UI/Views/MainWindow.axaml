@@ -16,39 +16,33 @@
     </Design.DataContext>
     
     <StackPanel Orientation="Horizontal">
-        <ListBox ItemsSource="{Binding SaveFiles}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <DockPanel>
-                        <TextBlock DockPanel.Dock="Left" Text="{Binding Name}"/>
-                        <Button DockPanel.Dock="Right"
-                                HorizontalAlignment="Right"
-                                Margin="32, 0, 0, 0"
-                                Name="SelectButton"
-                                Command="{Binding SelectCommand}"
-                                CommandParameter="{Binding}">Select</Button>
-                    </DockPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <StackPanel Orientation="Vertical" Margin="16">
-            <StackPanel Orientation="Horizontal" Margin="0, 8">
-                <TextBlock Text="Farm: "></TextBlock>
-                <TextBlock Text="{Binding Selected.Name}"></TextBlock>
+        <DockPanel>
+            <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="8" FontSize="16" Text="Saves:"/>
+            <ListBox ItemsSource="{Binding SaveFiles}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <TextBlock DockPanel.Dock="Left" Text="{Binding Name}"/>
+                            <Button DockPanel.Dock="Right"
+                                    HorizontalAlignment="Right"
+                                    Margin="32, 0, 0, 0"
+                                    Name="SelectButton"
+                                    Command="{Binding SelectCommand}"
+                                    CommandParameter="{Binding}">Select</Button>
+                        </DockPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+        <DockPanel>
+            <TextBlock DockPanel.Dock="Bottom" Margin="8" Text="{Binding Status}"/>
+            <StackPanel Orientation="Vertical" Margin="16">
+                <TextBlock Margin="0, 8" Text="{Binding Selected.Name, StringFormat='Farm: {0}'}"/>
+                <TextBlock Margin="0, 8" Text="{Binding Selected.Farmer, StringFormat='Farmer: {0}'}"/>
+                <TextBlock Margin="0, 8" Text="{Binding Selected.CurSeason, StringFormat='Current In-Game Season: {0}'}"/>
+                <TextBlock Margin="0, 8" Text="{Binding Selected.CurSeasonByDay, StringFormat='Current Calendar Season: {0}'}"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0, 8">
-                <TextBlock Text="Farmer: "></TextBlock>
-                <TextBlock Text="{Binding Selected.Farmer}"></TextBlock>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0, 8">
-                <TextBlock Text="Current Season: "></TextBlock>
-                <TextBlock Text="{Binding Selected.CurSeason}"></TextBlock>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0, 8">
-                <TextBlock Text="Current Season By Day: "></TextBlock>
-                <TextBlock Text="{Binding Selected.CurSeasonByDay}"></TextBlock>
-            </StackPanel>
-        </StackPanel>
+        </DockPanel>
     </StackPanel>
 
 </Window>
