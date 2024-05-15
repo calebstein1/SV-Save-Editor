@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Dynamic;
 using System.Threading.Tasks;
 using ReactiveUI;
 using SVS_Season_Modifier.UI.Models;
@@ -13,11 +15,19 @@ internal class MainWindowViewModel : ViewModelBase
         Functions.FindSaveFiles(ref _saveFiles, this);
     }
 
+    internal List<Season> Seasons { get; } =
+    [
+        Season.Spring,
+        Season.Summer,
+        Season.Winter,
+        Season.Fall
+    ];
+
     private SaveFile _selected = new(null)
     {
         Name = "",
-        CurSeason = "",
-        CurSeasonByDay = "",
+        CurSeason = 0,
+        CurSeasonByDay = 0,
         Farmer = "",
         FilePath = "",
         SaveId = ""

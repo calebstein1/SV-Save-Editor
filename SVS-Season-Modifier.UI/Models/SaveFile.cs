@@ -12,8 +12,8 @@ internal class SaveFile(MainWindowViewModel? vm)
     internal string? SaveId { get; set; }
     internal string? Name { get; set; }
     internal string? Farmer { get; set; }
-    internal string? CurSeason { get; set; }
-    internal string? CurSeasonByDay { get; set; }
+    internal Season CurSeason { get; set; }
+    internal Season CurSeasonByDay { get; set; }
 
     internal ReactiveCommand<SaveFile, Task> SelectCommand { get; } =
         ReactiveCommand.Create<SaveFile, Task>(SelectFile);

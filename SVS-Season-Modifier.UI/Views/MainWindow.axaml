@@ -41,10 +41,24 @@
             <StackPanel Orientation="Vertical" Margin="16">
                 <TextBlock Margin="0, 8" Text="{Binding Selected.Name, StringFormat='Farm: {0}'}"/>
                 <TextBlock Margin="0, 8" Text="{Binding Selected.Farmer, StringFormat='Farmer: {0}'}"/>
-                <TextBlock Margin="0, 8" Text="{Binding Selected.CurSeason, StringFormat='Current In-Game Season: {0}'}"/>
-                <TextBlock Margin="0, 0, 0, 64" Text="{Binding Selected.CurSeasonByDay, StringFormat='Current Calendar Season: {0}'}"/>
-                <Button Margin="0, 8"
-                        HorizontalAlignment="Left"
+                <TextBlock Margin="0, 8" Text="Current In-Game Season:"/>
+                <ComboBox ItemsSource="{Binding Seasons}" SelectedIndex="{Binding Selected.CurSeason}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding }"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBlock Margin="0, 8" Text="Current Calendar Season:"/>
+                <ComboBox ItemsSource="{Binding Seasons}" SelectedIndex="{Binding Selected.CurSeasonByDay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding }"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button Margin="0, 16"
+                        HorizontalAlignment="Center"
                         Command="{Binding SaveCommand}"
                         CommandParameter="{Binding}">
                     Save Changes

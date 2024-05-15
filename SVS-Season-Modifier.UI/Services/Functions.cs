@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Xml;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using SVS_Season_Modifier.UI.Models;
 using SVS_Season_Modifier.UI.ViewModels;
 
@@ -61,7 +60,13 @@ internal static class Functions
             var saveId = newSave.SaveId ?? throw new InvalidOperationException();
             
             reader.Load(Path.Combine(savePath, saveId));
-            newSave.CurSeason = reader.DocumentElement.SelectSingleNode("currentSeason").InnerText;
+            newSave.CurSeason = reader.DocumentElement.SelectSingleNode("currentSeason").InnerText switch
+            {
+                "spring" => Season.Spring,
+                "summer" => Season.Summer,
+                "fall" => Season.Fall,
+                "winter" => Season.Winter
+            };
             // Do CurSeasonByDay
 
             reader.Load(Path.Combine(savePath, "SaveGameInfo"));
