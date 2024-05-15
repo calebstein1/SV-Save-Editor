@@ -21,11 +21,29 @@
                 <DataTemplate>
                     <DockPanel>
                         <TextBlock DockPanel.Dock="Left" Text="{Binding Name}"/>
-                        <Button DockPanel.Dock="Right">Select</Button>
+                        <Button DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="32, 0, 0, 0">Select</Button>
                     </DockPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <StackPanel Orientation="Vertical" Margin="16">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Farm: "></TextBlock>
+                <TextBlock Text="{Binding Selected.Name}"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0, 8">
+                <TextBlock Text="Farmer: "></TextBlock>
+                <TextBlock Text="{Binding Selected.Farmer}"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0, 8">
+                <TextBlock Text="Current Season: "></TextBlock>
+                <TextBlock Text="{Binding Selected.CurSeason}"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0, 8">
+                <TextBlock Text="Current Season By Day: "></TextBlock>
+                <TextBlock Text="{Binding Selected.CurSeasonByDay}"></TextBlock>
+            </StackPanel>
+        </StackPanel>
     </StackPanel>
 
 </Window>

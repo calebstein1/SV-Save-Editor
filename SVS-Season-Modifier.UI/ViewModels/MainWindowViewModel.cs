@@ -11,6 +11,21 @@ internal class MainWindowViewModel : ViewModelBase
     {
         Functions.FindSaveFiles(ref _saveFiles);
     }
+
+    private SaveFile _selected = new SaveFile
+    {
+        Name = "",
+        CurSeason = "",
+        CurSeasonByDay = "",
+        Farmer = "",
+        FilePath = "",
+        SaveId = ""
+    };
+    internal SaveFile Selected
+    {
+        get => _selected;
+        set => this.RaiseAndSetIfChanged(ref _selected, value);
+    }
     
     private ObservableCollection<SaveFile> _saveFiles = [];
     internal ObservableCollection<SaveFile> SaveFiles
