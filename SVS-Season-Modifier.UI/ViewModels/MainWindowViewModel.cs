@@ -1,11 +1,17 @@
 ﻿using System.Collections.ObjectModel;
 using ReactiveUI;
 using SVS_Season_Modifier.UI.Models;
+using SVS_Season_Modifier.UI.Services;
 
 namespace SVS_Season_Modifier.UI.ViewModels;
 
 internal class MainWindowViewModel : ViewModelBase
 {
+    internal MainWindowViewModel()
+    {
+        Functions.FindSaveFiles(ref _saveFiles);
+    }
+    
     private ObservableCollection<SaveFile> _saveFiles = [];
     internal ObservableCollection<SaveFile> SaveFiles
     {
