@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using ReactiveUI;
 using SVS_Season_Modifier.UI.ViewModels;
