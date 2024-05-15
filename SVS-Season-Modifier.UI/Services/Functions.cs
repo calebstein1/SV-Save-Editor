@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using System.Xml;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using SVS_Season_Modifier.UI.Models;
+using SVS_Season_Modifier.UI.ViewModels;
 
 namespace SVS_Season_Modifier.UI.Services;
 
@@ -26,7 +27,7 @@ internal static class Functions
             OperatingSystem.Linux;
     }
     
-    internal static void FindSaveFiles(ref ObservableCollection<SaveFile> saveFiles)
+    internal static void FindSaveFiles(ref ObservableCollection<SaveFile> saveFiles, MainWindowViewModel vm)
     {
         XmlDocument reader = new();
         OperatingSystem os = 0;
@@ -51,7 +52,7 @@ internal static class Functions
         }
 
         // Rider suggested this monstrosity...
-        foreach (var newSave in from path in searchPaths from save in Directory.GetDirectories(path) select new SaveFile
+        foreach (var newSave in from path in searchPaths from save in Directory.GetDirectories(path) select new SaveFile(vm)
                  {
                      FilePath = save,
                      SaveId = Path.GetFileName(save)

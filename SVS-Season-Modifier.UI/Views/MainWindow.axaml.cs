@@ -1,10 +1,12 @@
+using System;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 
 namespace SVS_Season_Modifier.UI.Views;
 
-public partial class MainWindow : Window
+internal partial class MainWindow : Window
 {
-    public MainWindow()
+    internal MainWindow()
     {
         InitializeComponent();
     }

@@ -9,10 +9,10 @@ internal class MainWindowViewModel : ViewModelBase
 {
     internal MainWindowViewModel()
     {
-        Functions.FindSaveFiles(ref _saveFiles);
+        Functions.FindSaveFiles(ref _saveFiles, this);
     }
 
-    private SaveFile _selected = new SaveFile
+    private SaveFile _selected = new(null)
     {
         Name = "",
         CurSeason = "",

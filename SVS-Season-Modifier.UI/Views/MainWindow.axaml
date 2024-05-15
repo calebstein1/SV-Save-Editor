@@ -21,13 +21,18 @@
                 <DataTemplate>
                     <DockPanel>
                         <TextBlock DockPanel.Dock="Left" Text="{Binding Name}"/>
-                        <Button DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="32, 0, 0, 0">Select</Button>
+                        <Button DockPanel.Dock="Right"
+                                HorizontalAlignment="Right"
+                                Margin="32, 0, 0, 0"
+                                Name="SelectButton"
+                                Command="{Binding SelectCommand}"
+                                CommandParameter="{Binding}">Select</Button>
                     </DockPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Orientation="Vertical" Margin="16">
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Margin="0, 8">
                 <TextBlock Text="Farm: "></TextBlock>
                 <TextBlock Text="{Binding Selected.Name}"></TextBlock>
             </StackPanel>
