@@ -67,7 +67,7 @@ internal static class Functions
                 "fall" => Season.Fall,
                 "winter" => Season.Winter
             };
-            // Do CurSeasonByDay
+            newSave.Money = int.Parse(reader.DocumentElement.SelectSingleNode("player").SelectSingleNode("money").InnerText);
 
             reader.Load(Path.Combine(savePath, "SaveGameInfo"));
             newSave.Name = reader.DocumentElement.SelectSingleNode("farmName").InnerText;

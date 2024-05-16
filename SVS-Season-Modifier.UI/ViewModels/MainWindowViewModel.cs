@@ -25,8 +25,8 @@ internal class MainWindowViewModel : ViewModelBase
     private SaveFile _selected = new(null)
     {
         Name = "",
+        Money = 0,
         CurSeason = 0,
-        CurSeasonByDay = 0,
         Farmer = "",
         FilePath = "",
         SaveId = ""
@@ -44,7 +44,7 @@ internal class MainWindowViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref _saveFiles, value);
     }
 
-    private string _status = "SVS Season Modifier v0.1.0-beta";
+    private string _status = "SV Save Editor v0.1.0-beta";
     internal string Status
     {
         get => _status;
@@ -53,7 +53,7 @@ internal class MainWindowViewModel : ViewModelBase
 
     internal void ResetStatus()
     {
-        Status = "SVS Season Modifier v0.1.0-beta";
+        Status = "SV Save Editor v0.1.0-beta";
     }
     
     internal ReactiveCommand<MainWindowViewModel, Task> SaveCommand { get; } =
