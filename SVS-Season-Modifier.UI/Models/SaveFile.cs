@@ -6,9 +6,9 @@ namespace SVS_Season_Modifier.UI.Models;
 
 internal class SaveFile(MainWindowViewModel? vm)
 {
-    internal MainWindowViewModel? Vm = vm;
-    internal string? FilePath { get; set; }
-    internal string? SaveId { get; set; }
+    private readonly MainWindowViewModel? _vm = vm;
+    internal string? FilePath { get; init; }
+    internal string? SaveId { get; init; }
     internal string? Name { get; set; }
     internal string? Farmer { get; set; }
     internal int Money { get; set; }
@@ -19,6 +19,6 @@ internal class SaveFile(MainWindowViewModel? vm)
 
     private static async Task SelectFile(SaveFile saveFile)
     {
-        await Task.Run(() => saveFile.Vm.Selected = saveFile);
+        await Task.Run(() => saveFile._vm.Selected = saveFile);
     }
 }
