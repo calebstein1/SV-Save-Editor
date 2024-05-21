@@ -38,7 +38,7 @@
         </DockPanel>
         <DockPanel>
             <TextBlock DockPanel.Dock="Bottom" Margin="8" Text="{Binding Status}"/>
-            <StackPanel Orientation="Vertical" Margin="16">
+            <StackPanel Orientation="Vertical" Margin="16" Width="180">
                 <TextBlock Margin="0, 8" Text="Farm Name:"/>
                 <TextBox Margin="0, 8" Text="{Binding Selected.Name}"/>
                 <TextBlock Margin="0, 8" Text="Farmer Name:"/>
